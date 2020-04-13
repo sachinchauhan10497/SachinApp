@@ -23,4 +23,9 @@ Install and use MongoDb on Local
 - brew install mongodb-community@4.2
 - mongo --host localhost --port 27017
 
+- Learn Mongo DB - https://www.tutorialspoint.com/mongodb
 Create Datebase for our App
+
+# Python APIs
+
+# Node.js Front End APIs
