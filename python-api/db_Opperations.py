@@ -2,7 +2,7 @@ import pymongo as mnDb
 import config
 
 print('Connecting with Mongo DB...')
-# config.MONGO_DOCKER_IP = "localhost"
+config.MONGO_DOCKER_IP = "localhost"
 myclient = mnDb.MongoClient(config.MONGO_DOCKER_IP + ":" + config.MONGO_PORT)
 db = myclient[config.MONGO_DB_NAME][config.MONGO_DB_COLLECTION]
 
