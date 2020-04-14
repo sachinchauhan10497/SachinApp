@@ -48,4 +48,4 @@ curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
 
 # Linting
 
-- pylint python-api/run.py
+- pylint db_support.py run.py config.py
