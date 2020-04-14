@@ -43,3 +43,5 @@ sudo lsof -i:5000
 EXPOSE 27017
 
 - linking the containers - docker run -it --name python_container --link mongodb -d d609a386f707
+
+curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'

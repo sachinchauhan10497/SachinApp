@@ -1,18 +1,22 @@
 import flask
 from flask import request
-import db_connect
+import db_Opperations as dbObj
+import config
 
 app = flask.Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def home():
-    print(request.args)
-    printData = "Hey there !... - "
-    found = db.find({"_id" : request.args.get('name')})
-    for f in found:
-        print(f['data'])
-        printData = printData + f['data']
-    return printData
+@app.route('/', methods=['POST'])
+def postAPI():
+    userName = request.args.get(config.keyParameterValue)
+    data = request.args.get(config.valueParameterName)
+    return dbObj.insertRecord(userName, data)
 
-db = db_connect.getMongoDbConnection()
+@app.route('/', methods=['GET'])
+def getAPI():
+    found = dbObj.findByUserName(request.args.get(config.keyParameterValue))
+    result = ""
+    for f in found:
+        result = result + f[config.valueParameterName]
+    return result
+
 app.run(host="0.0.0.0", debug=True)
