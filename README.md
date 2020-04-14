@@ -7,7 +7,7 @@ Creating App which
 
 I save data in MongoDb, Creare APIs in Python and UI in Node.js. Each will run inside docker container.
 
-Then I - add
+Then I will add
 - Testing (basic test cases and code covarage)
 - Linting Code
 - Instead of getting text user will post his code in POST and will get it's output in GET
@@ -28,4 +28,18 @@ Create Datebase for our App
 
 # Python APIs
 
+- https://www.w3schools.com/python/python_mongodb_create_db.asp
+
+- docker build python-api 
+- docker run -p 5000:5000 -d container_id
+
 # Node.js Front End APIs
+
+# Other imp stuff
+
+kill -9 2495     
+sudo lsof -i:5000
+
+EXPOSE 27017
+
+- linking the containers - docker run -it --name python_container --link mongodb -d d609a386f707
