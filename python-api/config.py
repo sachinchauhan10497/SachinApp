@@ -3,5 +3,5 @@ MONGO_PORT = "27017"
 MONGO_DB_NAME = "sachin_db"
 MONGO_DB_COLLECTION = "user_data"
 
-keyParameterValue = "userName"
-valueParameterName = "data"
+USERNAME_PARAM = "userName"
+DATA_PARAM = "data"

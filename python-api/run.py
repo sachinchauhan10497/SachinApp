@@ -1,22 +1,26 @@
 import flask
 from flask import request
-import db_Opperations as dbObj
+import db_support as dbObj
 import config
 
-app = flask.Flask(__name__)
+APP = flask.Flask(__name__)
 
-@app.route('/', methods=['POST'])
-def postAPI():
-    userName = request.args.get(config.keyParameterValue)
-    data = request.args.get(config.valueParameterName)
-    return dbObj.insertRecord(userName, data)
 
-@app.route('/', methods=['GET'])
-def getAPI():
-    found = dbObj.findByUserName(request.args.get(config.keyParameterValue))
+@APP.route('/', methods=['POST'])
+def post_api():
+# POST API to insert data
+    user_name = request.args.get(config.USERNAME_PARAM)
+    data = request.args.get(config.DATA_PARAM)
+    return dbObj.insert_record(user_name, data)
+
+
+@APP.route('/', methods=['GET'])
+def get_api():
+# GET API to get data from userName
+    found_row = dbObj.find_by_user_name(request.args.get(config.USERNAME_PARAM))
     result = ""
-    for f in found:
-        result = result + f[config.valueParameterName]
+    for row in found_row:
+        result = result + row[config.DATA_PARAM]
     return result
 
-app.run(host="0.0.0.0", debug=True)
+APP.run(host="0.0.0.0", debug=True)
