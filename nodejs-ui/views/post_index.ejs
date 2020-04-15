@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SachinApp</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <h2 align="center">Type your unique Username and save your data.</h2>
+        <br>
+        <form action="/post" method="post">
+          <input name="userName" type="text" class="ghost-input" placeholder="Enter User Name ..." required>
+          <input name="data" type="text" class="ghost-input" placeholder="Enter The Data ..." required>
+          <input type="submit" class="ghost-button" value="Save">
+        </form>
+        <br>
+        <% if(output !== null){ %>
+          <p><%= output %></p>
+        <% } %>
+        <br><br><br>
+        <form action="/get" method="get">
+            <input type="submit" class="ghost-button" value="Goto To GET">
+          </form>
+      </fieldset>
+    </div>
+  </body>
+</html>

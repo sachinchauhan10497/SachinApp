@@ -31,7 +31,7 @@ Create Datebase for our App
 - https://www.w3schools.com/python/python_mongodb_create_db.asp
 
 - docker build python-api 
-- docker run -p 5000:5000 -d container_id
+- docker run -p 5000:5000 -d --name python-api container_id
 
 # Node.js Front End APIs
 
@@ -49,3 +49,12 @@ curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
 # Linting
 
 - pylint db_support.py run.py config.py
+
+# Node.js
+- npm install express --save
+             ejs, body-parser, request
+
+- eslint
+- npm install eslint -g
+- eslint --init
+- eslint app.js --fix
