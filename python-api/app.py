@@ -5,10 +5,9 @@ from flask import request
 import db_support as dbObj
 import config
 
-APP = flask.Flask(__name__)
+app = flask.Flask(__name__, instance_relative_config=True)
 
-
-@APP.route('/', methods=['POST'])
+@app.route('/', methods=['POST'])
 def post_api():
     """ POST API to insert data """
     user_name = request.args.get(config.USERNAME_PARAM)
@@ -16,7 +15,7 @@ def post_api():
     return dbObj.insert_record(user_name, data)
 
 
-@APP.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_api():
     """GET API to get data from userName"""
     found_row = dbObj.find_by_user_name(request.args.get(config.USERNAME_PARAM))
@@ -25,4 +24,8 @@ def get_api():
         result = result + row[config.DATA_PARAM]
     return result
 
-APP.run(host="0.0.0.0", debug=True)
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", debug=True)
+
+
+

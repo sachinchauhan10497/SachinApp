@@ -5,8 +5,9 @@ COPY . .
 
 RUN pip install pymongo
 RUN pip install flask
+RUN pip install pytest
 
 EXPOSE 27017
 
-CMD [ "python", "run.py" ]
+CMD [ "python", "app.py" ]
 

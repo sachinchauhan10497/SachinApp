@@ -28,6 +28,8 @@ Create Datebase for our App
 
 # Python APIs
 
+export FLASK_APP=my_app
+
 - https://www.w3schools.com/python/python_mongodb_create_db.asp
 
 - docker build python-api 
@@ -61,3 +63,11 @@ curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
 
 - docker build nodejs-ui
 - docker run -p 3000:3000 --name nodejs-ui -d b00152f27a96
+
+
+# Testing 
+Put the test files in the tests dir.
+Put the test in files like class_name_test.py
+Make sure your test class inherits from unittest.TestCase
+
+- https://nose.readthedocs.io/en/latest/finding_tests.html
