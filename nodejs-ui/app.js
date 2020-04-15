@@ -23,7 +23,7 @@ app.listen(3000, () => {
 });
 
 app.get("/", (req, res) => {
-    res.render("home");
+	res.render("home");
 });
 
 app.get("/get", (req, res) => {
@@ -31,22 +31,22 @@ app.get("/get", (req, res) => {
 });
 
 app.get("/post", (req, res) => {
-    res.render("post_index", {output: null});
+	res.render("post_index", {output: null});
 });
 
 app.post("/post", (req, res) => {
-    let userName = req.body.userName;
-    let data = req.body.data;
-    console.log(post_url + "userName=" + userName + "&data=" + data);
-    request.post(post_url + "userName=" + userName + "&data=" + data, function(err, response){
-        if(err){
-            res.render("post_index", {output: "Data Insertion Failed !"});
-        }
-        else{
-            let result = response.body;
-            res.render("post_index", {output: "For " + userName + " - " + result});
-        }
-    });
+	let userName = req.body.userName;
+	let data = req.body.data;
+	console.log(post_url + "userName=" + userName + "&data=" + data);
+	request.post(post_url + "userName=" + userName + "&data=" + data, function(err, response){
+		if(err){
+			res.render("post_index", {output: "Data Insertion Failed !"});
+		}
+		else{
+			let result = response.body;
+			res.render("post_index", {output: "For " + userName + " - " + result});
+		}
+	});
 });
 
 app.post("/get", (req, res) => {

@@ -58,3 +58,6 @@ curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
 - npm install eslint -g
 - eslint --init
 - eslint app.js --fix
+
+- docker build nodejs-ui
+- docker run -p 3000:3000 --name nodejs-ui -d b00152f27a96
