@@ -49,7 +49,7 @@ EXPOSE 27017
 curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
 
 # Linting
-
+pylint *.py
 - pylint db_support.py run.py config.py
 
 # Node.js
@@ -65,9 +65,15 @@ curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
 - docker run -p 3000:3000 --name nodejs-ui -d b00152f27a96
 
 
-# Testing 
+# Testing and Code coverage
+
+nosetests --with-coverage
+
 Put the test files in the tests dir.
 Put the test in files like class_name_test.py
 Make sure your test class inherits from unittest.TestCase
 
 - https://nose.readthedocs.io/en/latest/finding_tests.html
+
+
+jupyter kernelgateway

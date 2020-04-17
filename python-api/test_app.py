@@ -1,21 +1,24 @@
-from app import app
-from flask import request
+""" Unit test GET and POST APs """
 
 import unittest
-import json
+from app import APP
 
-class CitiesTestCase(unittest.TestCase):
+class AppTestCase(unittest.TestCase):
+    """ Testing Flask App """
 
-  def test_post(self):
-    tester = app.test_client(self)
-    response = tester.post('/?userName=testing_user&data=testing_data', content_type='application/json')
-    self.assertEqual(response.status_code, 200)
+    def test_post(self):
+        """ Hitting POST API """
+        tester = APP.test_client(self)
+        post_url = "/?userName=testing_user&data=testing_data"
+        response = tester.post(post_url, content_type="application/json")
+        self.assertEqual(response.status_code, 200)
 
-  def test_get(self):
-    tester = app.test_client(self)
-    response = tester.get('/?userName=testing_user', content_type='application/json')
-    self.assertEqual(response.status_code, 200)
-    self.assertEqual(response.data.decode('UTF-8'),"testing_data")
+    def test_get(self):
+        """ Hitting GET API """
+        tester = APP.test_client(self)
+        response = tester.get('/?userName=testing_user', content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data.decode("UTF-8"), "testing_data")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,7 @@ console.log("Hello World ! Starting Node.js App...");
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
+const nl2br  = require("nl2br");
 
 const app = new express();
 
@@ -37,8 +38,9 @@ app.get("/post", (req, res) => {
 app.post("/post", (req, res) => {
 	let userName = req.body.userName;
 	let data = req.body.data;
-	console.log(post_url + "userName=" + userName + "&data=" + data);
-	request.post(post_url + "userName=" + userName + "&data=" + data, function(err, response){
+	let url = post_url + "userName=" + userName + "&data=" + encodeURIComponent(data);
+	console.log(url);
+	request.post(url, function(err, response){
 		if(err){
 			res.render("post_index", {output: "Data Insertion Failed !"});
 		}
