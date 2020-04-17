@@ -1,79 +1,50 @@
 # SachinApp
-My simple app to learn basics of Docker, MongoDb, Python, Node.js, Testing, Linting
+
+My app to learn basics of Docker, MongoDb, Python, Node.js, Testing, code coverage, Linting.
 
 Creating App which
 - User can send usreName and text to save in Db (POST API)
 - User can get his text by UserName (GET API)
+- Can execute python code on jupyter kernelgateway
 
 I save data in MongoDb, Creare APIs in Python and UI in Node.js. Each will run inside docker container.
 
-Then I will add
-- Testing (basic test cases and code covarage)
-- Linting Code
-- Instead of getting text user will post his code in POST and will get it's output in GET
+# Mongo Db
 
-# Mongo Db 
 Commands For Docker 
 - docker pull mongo
 - docker run -d -p 27017-27019:27017-27019 --name mongodb mongo
-- docker exec -it mongodb bash
-
-Install and use MongoDb on Local
-- brew tap mongodb/brew
-- brew install mongodb-community@4.2
-- mongo --host localhost --port 27017
-
 - Learn Mongo DB - https://www.tutorialspoint.com/mongodb
-Create Datebase for our App
 
 # Python APIs
 
-export FLASK_APP=my_app
-
-- https://www.w3schools.com/python/python_mongodb_create_db.asp
-
+- python connets mongodb - https://www.w3schools.com/python/python_mongodb_create_db.asp
 - docker build python-api 
 - docker run -p 5000:5000 -d --name python-api container_id
 
 # Node.js Front End APIs
 
-# Other imp stuff
-
-kill -9 2495     
-sudo lsof -i:5000
-
-EXPOSE 27017
-
-- linking the containers - docker run -it --name python_container --link mongodb -d d609a386f707
-
-curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
+- npm install express --save (also do for ejs, body-parser, request etc.)
+- docker build nodejs-ui
+- docker run -p 3000:3000 --name nodejs-ui -d b00152f27a96
 
 # Linting
-pylint *.py
-- pylint db_support.py run.py config.py
 
-# Node.js
-- npm install express --save
-             ejs, body-parser, request
-
-- eslint
+- python - pylint *.py
+- node.js eslint
 - npm install eslint -g
 - eslint --init
 - eslint app.js --fix
 
-- docker build nodejs-ui
-- docker run -p 3000:3000 --name nodejs-ui -d b00152f27a96
-
-
 # Testing and Code coverage
+- nosetests --with-coverage
+- learn nosetests - https://nose.readthedocs.io/en/latest/finding_tests.html
 
-nosetests --with-coverage
+# Other imp stuff
+- releasing port if already useed
+    sudo lsof -i:port
+    kill -9 p_id     
 
-Put the test files in the tests dir.
-Put the test in files like class_name_test.py
-Make sure your test class inherits from unittest.TestCase
+- linking the containers - docker run -it --name python_container --link mongodb -d d609a386f707
 
-- https://nose.readthedocs.io/en/latest/finding_tests.html
-
-
-jupyter kernelgateway
+- post directly on python - curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
