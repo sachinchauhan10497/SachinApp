@@ -6,6 +6,7 @@ COPY . .
 RUN pip install pymongo
 RUN pip install flask
 RUN pip install pytest
+RUN pip install pyjwt
 
 EXPOSE 27017
 

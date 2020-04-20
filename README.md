@@ -48,3 +48,7 @@ Commands For Docker
 - linking the containers - docker run -it --name python_container --link mongodb -d d609a386f707
 
 - post directly on python - curl -X POST 'http://0.0.0.0:5000/?userName=abc11&data=abcd'
+
+# Authentication using JWT Tockenes
+- learning - https://jwt.io/
+- pip install pyjwt

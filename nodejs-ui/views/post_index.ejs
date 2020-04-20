@@ -12,7 +12,7 @@
         <h2 align="center">Type your unique Username and save your data.</h2>
         <br>
         <form action="/post" method="post">
-          <input name="userName" type="text" class="ghost-input" placeholder="Enter User Name ..." required>
+          <input name="userName" type="text" class="ghost-input" placeholder="Enter User Name (Optional if logged in)..." >
           <textarea name="data" class="ghost-input" placeholder="Enter &lt;Code&gt;" required></textarea>
           <input type="submit" class="ghost-button" value="Save">
         </form>
@@ -20,9 +20,13 @@
         <% if(output !== null){ %>
           <p><%= output %></p>
         <% } %>
-        <br><br><br>
+        <br><br>
         <form action="/get" method="get">
             <input type="submit" class="ghost-button" value="Goto To GET">
+          </form>
+          <br><br>
+        <form action="/log_in" method="get">
+            <input type="submit" class="ghost-button" value="Re Login">
           </form>
       </fieldset>
     </div>

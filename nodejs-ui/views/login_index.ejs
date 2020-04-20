@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SachinApp</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <h2 align="center">Type Username and Password to Sign up (Registration)</h2>
+        <br>
+        <form action="/log_in" method="post">
+          <input name="userName" type="text" class="ghost-input" placeholder="Enter User Name ..." required>
+          <input name="password" type="password" class="ghost-input" placeholder="Enter Password ..." required>
+          <input type="submit" class="ghost-button" value="Login">
+        </form>
+        <br>
+        <% if(output !== null){ %>
+          <pre><p><%= output %></p></pre>
+        <% } %>
+        <br><br>
+        <form action="/sign_up" method="get">
+            <input type="submit" class="ghost-button" value="New User ? Sign in.">
+          </form>
+        <br><br>
+        <form action="/get" method="get">
+            <input type="submit" class="ghost-button" value="Goto To Get">
+          </form>
+          <br><br>
+          <form action="/post" method="get">
+              <input type="submit" class="ghost-button" value="Goto To Post">
+            </form>
+      </fieldset>
+    </div>
+  </body>
+</html>
