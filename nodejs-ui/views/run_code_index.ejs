@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SachinApp</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <h2 align="center">Run Your Code</h2>
+        <br>
+        <form action="/run_code" method="post">
+          <textarea name="code" class="ghost-input" placeholder="Enter Python &lt;Code&gt;" required></textarea>
+          <input type="submit" class="ghost-button" value="RUN CODE">
+        </form>
+        <br><br>
+        <h2>
+        <div class="row">
+          <div class="column">
+            <% if(code !== null){ %>
+              Code : <br>
+              <pre>
+              <%= code %>
+              </pre>
+            <% } %>
+          </div>
+          <div class="column">
+            <% if(output !== null){ %>
+              Output : <br>
+              <pre>
+              <%= output %>
+            </pre>
+            <% } %>
+          </div>
+        </div>
+        </h2>
+        <!-- <br><br>
+        <form action="/post" method="get">
+            <input type="submit" class="ghost-button" value="Goto To POST">
+          </form>
+          <br><br>
+        <form action="/log_in" method="get">
+            <input type="submit" class="ghost-button" value="Re Login">
+          </form> -->
+      </fieldset>
+    </div>
+  </body>
+</html>

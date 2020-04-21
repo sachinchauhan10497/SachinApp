@@ -1,5 +1,6 @@
 """ Runs Flask App on Port 5000 """
 
+import os
 import flask
 from flask import request
 import db_support as dbObj
@@ -61,6 +62,24 @@ def login_api():
         return {"response":"400", "error":"Either username or password is wrong."}
     jwt_tocken = auth_support.generate_jwt(user_name)
     return {"response":"200", "jwt_tocken":jwt_tocken}
+
+@APP.route('/run_code', methods=['GET'])
+def run_code_api():
+    """ Takes code and returns it's output """
+    code = request.args.get(config.CODE_PARAM)
+    print(code)
+    code_file = open("../jupyter_kernel_gateway/code.py", "w")
+    for line in code:
+        code_file.write(line)
+    code_file.close()
+    os.system("python3 ../jupyter_kernel_gateway/exec_code.py")
+    output = ""
+    output_file = open("../jupyter_kernel_gateway/output.txt", "r")
+    for line in output_file:
+        output = output + "\n" + line
+    if output is None or len(output) <= 1:
+        return "Code execution Failed"
+    return output
 
 if __name__ == '__main__':
     APP.run(host="0.0.0.0", debug=True)

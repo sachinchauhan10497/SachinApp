@@ -18,10 +18,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const python_api_host = "0.0.0.0";
 // const python_api_host = "172.17.0.3";
 const python_api_port = "5000";
-const get_url = "http://" + python_api_host + ":" + python_api_port + "/" + "?userName=";
-const post_url = "http://" + python_api_host + ":" + python_api_port + "?";
-const sign_up_url = "http://" + python_api_host + ":" + python_api_port + "/register?";
-const log_in_url = "http://" + python_api_host + ":" + python_api_port + "/login?";
+const python_full_url = "http://" + python_api_host + ":" + python_api_port;
+const get_url = python_full_url + "/" + "?userName=";
+const post_url = python_full_url + "?";
+const sign_up_url = python_full_url + "/register?";
+const log_in_url = python_full_url + "/login?";
+const run_code_url = python_full_url + "/run_code?";
 
 app.listen(3000, () => {
 	console.log("Server up!");
@@ -131,4 +133,22 @@ app.get("/jwt", (req, res) => {
 app.get("/logout", (req, res) => {
 	browserJwtTocken = "null";
 	res.render("jwt", {data: "Logged out !"});
+});
+
+app.get("/run_code", (req, res) => {
+	res.render("run_code_index", {output: null, code: null});
+});
+
+app.post("/run_code", (req, res) => {
+	let code = "\n" + req.body.code;
+	let url = run_code_url + "code=" + encodeURIComponent(code);
+	request.get(url, function(err, response){
+		if(err){
+			res.render("run_code_index", {output: "Can't Run Code on back-end :( ", code: code});
+		}
+		else{
+			let result = response.body;
+			res.render("run_code_index", {output: result, code: code});
+		}
+	});
 });

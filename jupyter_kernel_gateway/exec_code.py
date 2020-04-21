@@ -22,7 +22,7 @@ def code_run():
     kernel_name = "python"
 
     code = ""
-    file_obj = open("code.txt", "r")
+    file_obj = open("../jupyter_kernel_gateway/code.py", "r")
     for line in file_obj:
         code = code + "\n" + line
     file_obj.close()
@@ -74,10 +74,12 @@ def code_run():
         'metadata': {},
         'buffers': {}
     })
+    print(req)
     web_socket.write_message(req)
 
     print("Code submitted. Waiting for response...")
     kernel_idle = False
+    output = ""
     while not kernel_idle:
         msg = yield web_socket.read_message()
         msg = json_decode(msg)
@@ -92,7 +94,7 @@ def code_run():
         if 'msg_id' in msg['parent_header'] and \
                         msg['parent_header']['msg_id'] == msg_id:
             if msg_type == 'stream':
-                output = msg['content']['text']
+                output = output + msg['content']['text']
                 print("  Content: {}".format(msg['content']['text']))
             elif msg_type == 'status' and \
                             msg['content']['execution_state'] == 'idle':
@@ -108,7 +110,7 @@ def code_run():
         method='DELETE'
     )
     print("Deleted kernel {0}.".format(kernel_id))
-    file_obj = open("output.txt", "w")
+    file_obj = open("../jupyter_kernel_gateway/output.txt", "w")
     for line in output:
         file_obj.write(line)
     file_obj.close()

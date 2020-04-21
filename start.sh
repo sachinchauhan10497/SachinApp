@@ -1,3 +1,4 @@
 docker start mongodb
-docker start pythonAPI
-docker start nodejs-ui
+docker start pythonV3
+docker start nodeJsV3
+echo "App Started !"
