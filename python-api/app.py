@@ -68,6 +68,7 @@ def run_code_api():
     """ Takes code and returns it's output """
     code = request.args.get(config.CODE_PARAM)
     print(code)
+    dbObj.insert_code(code)
     code_file = open("../jupyter_kernel_gateway/code.py", "w")
     for line in code:
         code_file.write(line)

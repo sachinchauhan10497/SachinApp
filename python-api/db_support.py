@@ -30,6 +30,9 @@ def insert_record(user_name, data):
         return "UserName Already exist !"
     return "Data Successfully Inserted !"
 
+def insert_code(code):
+    DB.insert_one({config.DATA_PARAM:code})
+
 def register_user(user_name, password):
     """ insert new username and password pair """
     if user_name is None:
