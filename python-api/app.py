@@ -63,6 +63,17 @@ def login_api():
     jwt_tocken = auth_support.generate_jwt(user_name)
     return {"response":"200", "jwt_tocken":jwt_tocken}
 
+@APP.route('/OAuth_log_in', methods=['GET'])
+def google_log_in_api():
+    """ OAuth Login using gmail account """
+    return auth_support.oAuth_log_in()
+
+@APP.route('/OAuth_log_out', methods=['GET'])
+def google_log_out_api():
+    """ OAuth Log out """
+    os.system("rm token.pickle")
+    return "You are Logged Out !"
+
 @APP.route('/run_code', methods=['GET'])
 def run_code_api():
     """ Takes code and returns it's output """

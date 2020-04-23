@@ -31,6 +31,7 @@ def insert_record(user_name, data):
     return "Data Successfully Inserted !"
 
 def insert_code(code):
+    """ Insert code in Database with default id """
     DB.insert_one({config.DATA_PARAM:code})
 
 def register_user(user_name, password):

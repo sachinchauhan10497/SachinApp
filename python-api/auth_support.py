@@ -4,6 +4,7 @@ import hashlib
 import jwt
 import db_support
 import config
+from OAuth_Google import quickstart
 
 def md5(string):
     """ Returns Md5 hash of the given string """
@@ -28,7 +29,11 @@ def generate_jwt(username):
 
 def get_user_name_from_jwt(jwt_token):
     """ Verify JWT Tocken and return username from it """
-    decoded_payload = jwt.decode(jwt= jwt_token.encode(), key=config.JWT_SCRET_KEY, algorithms=[config.JWT_ALGORITHM])
+    decoded_payload = jwt.decode(jwt=jwt_token.encode(), key=config.JWT_SCRET_KEY, algorithms=[config.JWT_ALGORITHM])
     return decoded_payload['username']
 
+def oAuth_log_in():
+    user_email = quickstart.get_email()
+    print("Logged in with - " + str(user_email))
+    return user_email
 

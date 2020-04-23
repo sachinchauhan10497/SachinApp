@@ -24,6 +24,8 @@ const post_url = python_full_url + "?";
 const sign_up_url = python_full_url + "/register?";
 const log_in_url = python_full_url + "/login?";
 const run_code_url = python_full_url + "/run_code?";
+const oAuth_log_in_url = python_full_url + "/OAuth_log_in";
+const oAuth_log_out_url = python_full_url + "/OAuth_log_out";
 
 app.listen(3000, () => {
 	console.log("Server up!");
@@ -149,6 +151,34 @@ app.post("/run_code", (req, res) => {
 		else{
 			let result = response.body;
 			res.render("run_code_index", {output: result, code: code});
+		}
+	});
+});
+
+app.get("/oauth_log_in", (req, res) => {
+	res.render("oauth_log_in_index", {output: null});
+});
+
+app.post("/oauth_log_in", (req, res) => {
+	request.get(oAuth_log_in_url, function(err, response){
+		if(err){
+			res.render("oauth_log_in_index", {output: "Loggedin Failed :("});
+		}
+		else{
+			let result = response.body;
+			res.render("oauth_log_in_index", {output: "You are logged in with - " + result});
+		}
+	});
+});
+
+app.post("/oauth_log_out", (req, res) => {
+	request.get(oAuth_log_out_url, function(err, response){
+		if(err){
+			res.render("oauth_log_in_index", {output: "Logging Out Failed :("});
+		}
+		else{
+			let result = response.body;
+			res.render("oauth_log_in_index", {output: result});
 		}
 	});
 });
